@@ -1,0 +1,26 @@
+html,
+body {
+	margin: 20px;
+	padding: 0;
+}
+
+body {
+	font: 16px 'Helvetica Neue', Helvetica, Arial;
+	font-weight: 300;
+	line-height: 1.5;
+	width: auto;
+	background: #fafafa;
+	color: #353535;
+	font-smoothing: antialiased;
+}
+
+.input-config-view
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.section-title
+{
+	font-weight: bold;
+}

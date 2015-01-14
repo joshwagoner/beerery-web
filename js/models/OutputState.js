@@ -1,0 +1,7 @@
+(function() {
+
+    
+
+    //Beerery.InputConfig = InputConfig;
+
+})();
