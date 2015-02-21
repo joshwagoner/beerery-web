@@ -1,10 +1,13 @@
 (function() {
 
     var inputConfig = Backbone.Model.extend({
+        // ex: {"type":"DS18B20","active":true,"address":"28-000004f65c4d","name":"MLT"}
         defaults: {
-            testProperty: "testing"
+            name: "",
+            type: "",
+            active: false,
         },
-        urlRoot: Beerery.config.rootUrl + 'config/inputs'
+        urlRoot: Beerery.config.rootUrl + 'config/inputs/'
     });
 
     var inputConfigCollection = Backbone.Collection.extend({
