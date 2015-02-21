@@ -1,42 +1,44 @@
 (function() {
 
-  var inputConfigFormView = Backbone.View.extend({
-    template: _.template($('#input-edit-template').html()),
+    var inputConfigFormView = Backbone.View.extend({
+        template: _.template($('#input-edit-template').html()),
 
-    initialize : function() {
-      
-    },
+        initialize: function() {
 
-    render : function() {
-      var data = this.model.toJSON();
-      data[this.model.get("type")] = true;
+        },
 
-      this.$el.html(this.template({data: data}));
+        render: function() {
+            var data = this.model.toJSON();
+            data[this.model.get("type")] = true;
 
-      if (this.model.get("type") == "DS18B20"){
-        this.$(".input-config-edit").addClass("onewire");
-      }
+            this.$el.html(this.template({
+                data: data
+            }));
 
-      return this;
-    },
+            if (this.model.get("type") == "DS18B20") {
+                this.$(".input-config-edit").addClass("onewire");
+            }
 
-    update: function() {
-      this.model.set("name", this.$("input[name=name]").val());
-      this.model.set("active", this.$("input[name=active]").is(':checked'));
+            return this;
+        },
 
-      var type = this.$("input[name=type]:checked").val();
-      
-      // set type specific properties
-      if (type === "DS18B20"){
-        this.model.set("address", this.$("input[name=address]").val());
-      }
+        update: function() {
+            this.model.set("name", this.$("input[name=name]").val());
+            this.model.set("active", this.$("input[name=active]").is(':checked'));
 
-      this.model.set("type", type);
+            var type = this.$("input[name=type]:checked").val();
 
-      return true;
-    },
-  });
+            // set type specific properties
+            if (type === "DS18B20") {
+                this.model.set("address", this.$("input[name=address]").val());
+            }
 
-  Beerery.InputConfigFormView = inputConfigFormView;
+            this.model.set("type", type);
+
+            return true;
+        },
+    });
+
+    Beerery.InputConfigFormView = inputConfigFormView;
 
 })();

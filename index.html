@@ -21,7 +21,7 @@
         </div>
     </div>
     <div id="dashboard-output-section">
-        <div class="subsection-title">Outputs</div>
+        <div class="subsection-title">Outputs <button id="add-output-button">Add Output</button></div>
         <div id="output-list">
         ...
         </div>
@@ -89,6 +89,22 @@
     </div>
 </div>
 </script>
+<script type="text/template" id="output-edit-template">
+<div class="input-config-edit">
+    <div class="name-field">
+        <label>Name: </label>
+        <input name="name" value="<%- data.name %>">
+    </div>
+    <div class="name-field">
+        <label>Input Name: </label>
+        <input name="input=name" value="<%- data.input %>">
+    </div>
+    <div class="active-field">
+        <label>Active: </label>
+        <input name="active" type="checkbox" <%= data.active ? 'checked' : '' %>>
+    </div>
+</div>
+</script>
 
 <script type="text/javascript" src="public/lib/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="public/lib/underscore/underscore.js"></script>
@@ -96,16 +112,18 @@
 <script type="text/javascript" src="public/lib/backbone-modal/backbone.modal-min.js"></script>
 
 <script type="text/javascript" src="js/Beerery.js"></script>
-<script type="text/javascript" src="js/models/AppModel.js"></script>
 <script type="text/javascript" src="js/models/InputConfig.js"></script>
 <script type="text/javascript" src="js/models/OutputConfig.js"></script>
 
+<script type="text/javascript" src="js/views/ConfigViewBase.js"></script>
+<script type="text/javascript" src="js/views/ConfigCollectionViewBase.js"></script>
 <script type="text/javascript" src="js/views/InputConfigRowView.js"></script>
 <script type="text/javascript" src="js/views/InputConfigCollectionView.js"></script>
 <script type="text/javascript" src="js/views/OutputConfigRowView.js"></script>
 <script type="text/javascript" src="js/views/OutputConfigCollectionView.js"></script>
 <script type="text/javascript" src="js/views/HostModal.js"></script>
 <script type="text/javascript" src="js/views/InputConfigFormView.js"></script>
+<script type="text/javascript" src="js/views/OutputConfigFormView.js"></script>
 
 <script type="text/javascript">
 

@@ -41,6 +41,10 @@ Beerery.App = Backbone.View.extend({
             click: $.proxy(this.addInput, this)
         });
 
+        $("#add-output-button").on({
+            click: $.proxy(this.addOutput, this)
+        });
+
         var AppRouter = Backbone.Router.extend({
             routes: {
                 "config": "goToConfig",
@@ -89,6 +93,34 @@ Beerery.App = Backbone.View.extend({
                 success: function(){
                     // add the model to the collection
                     self.inputConfigs.add(newInputModel);
+                }
+            });
+        });
+
+        $('.app').append(renderedModal.el);
+    },
+
+    addOutput: function(){
+        var hostModal = new Beerery.HostModal();
+        hostModal.title = "New Output";
+
+        var newOutputModel = new Beerery.OutputConfig();
+
+        var editForm = new Beerery.OutputConfigFormView({
+            model: newOutputModel
+        });
+
+        var renderedModal = hostModal.render();
+        renderedModal.$(".bbm-modal__section").append(editForm.render().el);
+
+        var self = this;
+        this.listenTo(renderedModal, "submit", function(){
+            editForm.update();
+
+            newOutputModel.save({}, {
+                success: function(){
+                    // add the model to the collection
+                    self.outputConfigs.add(newOutputModel);
                 }
             });
         });
