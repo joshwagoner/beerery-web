@@ -9,11 +9,6 @@
             var self = this;
             this.configViews = [];
 
-            this.collection.each(function(configModel) {
-                var view = self.viewWithModel(configModel);
-                self.configViews.push(view);
-            });
-
             this.collection.on("add", _.bind(this.addView, this));
             this.collection.on("remove", _.bind(this.removeView, this));
         },
@@ -26,7 +21,7 @@
         },
 
         removeView: function(configModel) {
-            var view = _.find(this.configViews, function(v){
+            var view = _.find(this.configViews, function(v) {
                 return v.model == configModel;
             });
 
@@ -39,6 +34,11 @@
             var self = this;
 
             $(this.el).empty();
+
+            this.collection.each(function(configModel) {
+                var view = self.viewWithModel(configModel);
+                self.configViews.push(view);
+            });
 
             _(this.configViews).each(function(cv) {
                 $(self.el).append(cv.render().el);

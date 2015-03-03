@@ -9,9 +9,13 @@
 
         },
 
+        dataJSON: function() {
+            return this.model.toJSON();
+        },
+
         render: function() {
             this.$el.html(this.template({
-                data: this.model.toJSON()
+                data: this.dataJSON()
             }));
 
             this.$('.edit').on({

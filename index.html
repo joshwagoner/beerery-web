@@ -13,6 +13,18 @@
     <div>Beerery Control Center</div>
     <div>Dashboard</div>
     <div class="section-title">Current State</div>
+    <div id="dashboard-input-state-section">
+        <div class="subsection-title">Inputs</div>
+        <div id="input-state-list">
+        ...
+        </div>
+    </div>
+    <div id="dashboard-output-state-section">
+        <div class="subsection-title">Outputs</div>
+        <div id="output-state-list">
+        ...
+        </div>
+    </div>
     <div class="section-title">Configuration</div>
     <div id="dashboard-input-section">
         <div class="subsection-title">Inputs <button id="add-input-button">Add Input</button></div>
@@ -51,6 +63,7 @@
         <br/>
         Active: <label><%- data.active %></label>
         <br/>
+        Type:<pre><%- data.typeJSON %></pre>
         <button class="edit">edit</button>
         <button class="delete" href="#">delete</button>
     </div>
@@ -103,6 +116,50 @@
         <label>Active: </label>
         <input name="active" type="checkbox" <%= data.active ? 'checked' : '' %>>
     </div>
+    <div class="type-field">
+        <label>Type: </label>
+        <textarea id="type" rows="10" cols="50"><%- data.typeJSON %></textarea>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="input-state-template">
+<div class="input-config">
+    <div>
+    <label class="input-name"><%- data.name %></label>
+    </div>
+    <div>
+    <label class="input-display"><%- data.value_formatted %> <%- data.units %></label>
+    </div>
+    <div>
+    <label><%- new Date(data.date_servertime).toLocaleString() %></label>
+    </div>
+    <div>
+    Valid: <label><%- data.valid %></label>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="output-state-template">
+<div class="output-config">
+    <div>
+    <label class="output-name"><%- data.name %></label>
+    </div>
+    <div>
+    <label class="output-display"><%- data.output_value %></label>
+    </div>
+    <div>
+    <label><%- new Date(data.date_servertime).toLocaleString() %></label>
+    </div>
+    <div>
+    Valid: <label><%- data.valid %></label>
+    </div>
+    <div>
+    Input: <label><%- data.input_name %></label>
+    </div>
+    <div>
+    Input Value: <label><%- data.input_value_formatted %></label>
+    </div>
 </div>
 </script>
 
@@ -113,9 +170,13 @@
 
 <script type="text/javascript" src="js/Beerery.js"></script>
 <script type="text/javascript" src="js/models/InputConfig.js"></script>
+<script type="text/javascript" src="js/models/InputState.js"></script>
 <script type="text/javascript" src="js/models/OutputConfig.js"></script>
+<script type="text/javascript" src="js/models/OutputState.js"></script>
 
 <script type="text/javascript" src="js/views/ConfigViewBase.js"></script>
+<script type="text/javascript" src="js/views/InputStateView.js"></script>
+<script type="text/javascript" src="js/views/OutputStateView.js"></script>
 <script type="text/javascript" src="js/views/ConfigCollectionViewBase.js"></script>
 <script type="text/javascript" src="js/views/InputConfigRowView.js"></script>
 <script type="text/javascript" src="js/views/InputConfigCollectionView.js"></script>
